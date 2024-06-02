@@ -56,6 +56,8 @@ resource "azurerm_machine_learning_workspace" "mlws" {
   key_vault_id            = azurerm_key_vault.keyvault.id
   storage_account_id      = azurerm_storage_account.sa.id
 
+  public_network_access_enabled = true  # Enable public network access
+
   identity {
     type = "SystemAssigned"
   }

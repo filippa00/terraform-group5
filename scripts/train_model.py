@@ -30,8 +30,11 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, classification_report
+from azure.ai.ml.entities import Model
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml.entities import Model
 
-# Load the football dataset to pandas dataframe
 df = pd.read_csv('2016_CvH.csv')
 
 # use less rows to take less time
@@ -267,4 +270,5 @@ majority_class = y_train.value_counts().idxmax()
 baseline_accuracy = y_test.value_counts()[majority_class] / len(y_test)
 
 print("Baseline Accuracy:", baseline_accuracy)
+joblib.dump(model, "trained_model.pkl")
 
