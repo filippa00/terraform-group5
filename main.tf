@@ -19,24 +19,24 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "myrg" {
-    name = "ml-terraform-group5"
+    name = "terraform-group5"
     location = "West Europe"
 
 }
 
 resource "azurerm_application_insights" "ap" {
-  name                = "ml-terraform-app"
+  name                = "terraform-app"
   location            = azurerm_resource_group.myrg.location
   resource_group_name = azurerm_resource_group.myrg.name
   application_type    = "web"
 }
 
 resource "azurerm_key_vault" "keyvault" {
-  name                = "ml-terraform-keyvault"
+  name                = "terraform-keyvault-new"
   location            = azurerm_resource_group.myrg.location
   resource_group_name = azurerm_resource_group.myrg.name
   tenant_id           = data.azurerm_client_config.current.tenant_id
-  sku_name            = "standard"
+  sku_name            = "premium"
 }
 
 resource "azurerm_storage_account" "sa" {
